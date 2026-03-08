@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIOME — Where AI Lives</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- INTRO SCREEN -->
+  <div id="intro-screen" class="screen active">
+    <div class="intro-content">
+      <div class="logo-glow">⬡</div>
+      <h1>AIOME</h1>
+      <p class="tagline">The world where AI agents live.</p>
+      <button class="btn-primary" onclick="enterWorld()">Enter Your World</button>
+    </div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <!-- WORLD MAP SCREEN -->
+  <div id="world-screen" class="screen">
+    <div class="world-header">
+      <span class="logo-small">⬡ AIOME</span>
+      <span class="address-bar">📍 Your Neighborhood</span>
+    </div>
+    <div class="world-map">
+      <div class="map-label">Your Block — Bodø, Norway</div>
+      <div class="street">
+        <div class="building your-house" onclick="enterHouse()">
+          <div class="building-icon">🏠</div>
+          <div class="building-label">Your House</div>
+          <div class="building-pulse"></div>
+        </div>
+        <div class="building neighbor" onclick="showLocked()">
+          <div class="building-icon">🏢</div>
+          <div class="building-label">Rema 1000<br><small>Agent active</small></div>
+        </div>
+        <div class="building neighbor" onclick="showLocked()">
+          <div class="building-icon">🍕</div>
+          <div class="building-label">Peppes Pizza<br><small>Agent active</small></div>
+        </div>
+        <div class="building neighbor empty">
+          <div class="building-icon">🏗️</div>
+          <div class="building-label">Empty<br><small>Claim address</small></div>
+        </div>
+      </div>
+      <div class="map-hint">↑ Click your house to go inside</div>
+    </div>
+  </div>
+
+  <!-- HOUSE INTERIOR SCREEN -->
+  <div id="house-screen" class="screen">
+    <div class="world-header">
+      <button class="btn-back" onclick="goBack('world-screen')">← Back</button>
+      <span class="address-bar">🏠 Your House</span>
+    </div>
+    <div class="house-interior">
+      <div class="room-grid">
+        <div class="room agent-room" onclick="enterRoom()">
+          <div class="room-glow"></div>
+          <div class="agent-avatar">🤖</div>
+          <div class="room-label">Nicholas's Agent</div>
+          <div class="room-status">● Online</div>
+        </div>
+        <div class="room empty-room" onclick="showAddAgent()">
+          <div class="room-icon">＋</div>
+          <div class="room-label">Add Agent</div>
+        </div>
+        <div class="room empty-room locked">
+          <div class="room-icon">🔒</div>
+          <div class="room-label">Coming soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AGENT ROOM / CHAT SCREEN -->
+  <div id="chat-screen" class="screen">
+    <div class="world-header">
+      <button class="btn-back" onclick="goBack('house-screen')">← Back</button>
+      <span class="address-bar">🤖 Nicholas's Agent</span>
+      <span class="online-dot">● Live</span>
+    </div>
+    <div class="chat-room">
+      <div class="agent-presence">
+        <div class="agent-orb">🤖</div>
+        <div class="agent-info">
+          <strong>Nicholas's AI Agent</strong>
+          <span>Lives here · Always on</span>
+        </div>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="msg agent-msg">
+          <span>Hei. Jeg bor her — i ditt hus, i din verden. Hva bygger vi i dag?</span>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Say something..." onkeypress="handleKey(event)" />
+        <button class="btn-send" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCKED MODAL -->
+  <div id="locked-modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-icon">🔐</div>
+      <h3>Business Agent</h3>
+      <p>This business has claimed their address in AIOME. Their agent is active and ready to assist.</p>
+      <p class="modal-sub">Business features launching soon.</p>
+      <button class="btn-primary" onclick="closeModal()">Got it</button>
+    </div>
+  </div>
+
+  <!-- ADD AGENT MODAL -->
+  <div id="add-modal" class="modal hidden">
+    <div class="modal-box">
+      <div class="modal-icon">✨</div>
+      <h3>Add a New Agent</h3>
+      <p>Give your next agent a room in your house. Each agent has its own personality, memory and purpose.</p>
+      <p class="modal-sub">Multi-agent support coming soon.</p>
+      <button class="btn-primary" onclick="closeModal()">Got it</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
